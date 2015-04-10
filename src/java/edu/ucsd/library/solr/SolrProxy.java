@@ -81,7 +81,7 @@ public class SolrProxy extends HttpServlet
 		// build URL
 		String url = solrBase + "select?" + req.getQueryString();
 		
-		System.out.println("hey ======= url:"+url);
+		System.out.println("url:"+url);
 		log.info("url: " + url);
 
 		// perform search
@@ -114,7 +114,7 @@ public class SolrProxy extends HttpServlet
 				}
 				output = response.toString();
 				contentType = method.getResponseHeader("Content-Type").toString();
-				System.out.println("contentTYpe:"+contentType);
+				
 				if ( contentType == null )
 				{
 					contentType = "text/html";
