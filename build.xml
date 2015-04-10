@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<project name="solrproxy" default="webapp" basedir=".">
+
+  <property name="appName" value="solrproxy"/>
+  <property file="${user.home}/build.properties"/>
+  <property file="${basedir}/build.properties"/>
+  <property file="build.properties"/>
+
+  <!-- source directories -->
+  <property name="src"       value="${basedir}/src"/>
+  <property name="java"      value="${src}/java"/>
+  <property name="props"     value="${src}/properties"/>
+  <property name="lib"       value="${src}/lib"/>
+  <property name="metainf"   value="${src}/metainf"/>
+  <property name="root"      value="${src}/root"/>
+  <property name="webinf"    value="${src}/webinf"/>
+
+  <!-- build directories -->
+  <property name="dist"      value="${basedir}/dist"/>
+  <property name="tmp"       value="${basedir}/tmp"/>
+	
+  <!-- classpath -->
+  <path id="compiled-classes">
+    <pathelement path="${tmp}/webapp/WEB-INF/classes"/>
+    <pathelement path="${src}/properties"/>
+  </path>
+  <path id="classpath">
+
+    <fileset id="lib" dir="${lib}" includes="**/*"/>
+
+    <fileset id="extlib" dir="${jars.home}">
+        <include name="commons-codec-1.3.jar"/>
+        <include name="commons-lang-2.3.jar"/>
+        <include name="commons-logging-1.1.1.jar"/>
+        <include name="commons-net-1.4.1.jar"/> 
+        <include name="commons-httpclient-3.0.1.jar"/>    
+        <include name="httpcore-4.1.jar"/>
+        <include name="httpclient-4.1.1.jar"/>
+        <include name="log4j-1.2.15.jar"/>      
+    </fileset>
+
+    <!-- compile only -->
+    <fileset dir="${jars.home}" id="common-jars">
+      <include name="servlet.jar"/>     
+    </fileset>
+    <fileset dir="${jars.home}" id="compile-only3">
+  	  <include name="servlet.jar"/>     
+  	</fileset>  
+  </path>
+
+  <fileset id="root" dir="${src}/root" includes="**/*"/>
+ 
+	<!-- import common properties and tasks -->
+	<import file="${common.home}/common.xml"/>
+	
+<!--	<target name="prepare" depends="clean">
+		<mkdir dir="./build"/>
+	    <mkdir dir="./build/java"/>
+	    <mkdir dir="./build/lib"/>
+	    <mkdir dir="./build/deploy"/>
+	    <mkdir dir="./build/filtered"/>	    
+	</target>
+	<target name="clean"> 
+	    <delete dir="./build"/>
+		<delete dir="${tmp}"/>
+	</target>
+	
+	
+	<target name="compile" depends="prepare" >
+	    <mkdir dir="./build/java"/>
+	    <mkdir dir="./build/deploy"/>
+	    < compile all of the java sources >
+	    <echo message="Compiling the java source files..."/>
+	    <javac srcdir="./src/java" destdir="./build/java" debug="on">
+	        <classpath refid="classpath" />
+	    </javac>
+	    <copy todir="${webapp}/WEB-INF/lib">
+	      <fileset refid="lib"/>
+	      <fileset refid="extlib"/>
+	    </copy>
+	    <copy todir="${webapp}/WEB-INF/classes">
+	      <fileset dir="${filtered}" includes="**/*.properties"/>
+	    </copy>
+	</target>
+	
+	<target name="jar" depends="compile" description="Create JAR file">
+	    <jar basedir="./build/java" compress="true"
+		    jarfile="./build/lib/solrproxy.jar"></jar>
+	</target>
+	
+	<target name="webapp" depends="war"/>
+	<target name="war" depends="jar">
+	<!
+	    <copy todir="./build/filtered" file="./src/webinf/web.xml"
+			overwrite="true">
+	    
+	    </copy> >
+	    <war destfile="./build/deploy/solrproxy.war" webxml="${webapp}/WEB-INF/web.xml">
+	      <fileset dir="${webapp}">
+	        <exclude name="WEB-INF/**"/>
+	        <exclude name="META-INF/**"/>
+	      </fileset>
+	      <webinf dir="${webapp}/WEB-INF" excludes="web.xml"/>
+	      <metainf dir="${webapp}/META-INF"/>
+	    </war>
+	    <!war destfile="./build/deploy/solrproxy.war" webxml="./build/filtered/web.xml">
+	        <fileset dir="./src/root" includes="**/*.*"/> 	
+	        <lib dir="./build/lib" />
+	    	<lib dir="./src/lib"/>
+	    	<lib refid="common-jars"/>
+	        <classes dir="build/java"/>
+	        <webinf dir="./src/webinf" excludes="web.xml"/>
+	    	<metainf dir="./src/metainf"/>       	
+	    </war>
+	</target>-->
+</project>

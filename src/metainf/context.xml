@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="solrproxy.war" path="/solrproxy">	 
+    <ResourceLink global="solrBase" name="solrBase" type="java.lang.String"/>  
+</Context>
