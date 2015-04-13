@@ -30,7 +30,7 @@
 
   <servlet-mapping>
     <servlet-name>SolrProxy</servlet-name>
-    <url-pattern>/solr</url-pattern>
+    <url-pattern>/solr/select</url-pattern>
   </servlet-mapping>
  
   <resource-ref>
